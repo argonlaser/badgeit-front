@@ -3,12 +3,16 @@ language: node_js
 node_js:
   - 6.0.0
 
+before_install:
+  - source ~/.nvm/nvm.sh && nvm install $SHIPPABLE_NODE_VERSION
+  - node --version
+  - npm install
+  - sleep 2s
+  - npm install -g now
+  - sleep 2s
+
 build:
   ci:
-    - npm install -g now
-    - sleep 2s
-    - npm install
-    - sleep 2s
     - npm start &
     - npm test
 
@@ -16,3 +20,6 @@ build:
     - if [ "$BRANCH" == "master" ] && [ "$IS_PULL_REQUEST" == false ]; then
       bash ./dev-scripts/deploy.sh
       fi
+
+notifications:
+  - email: true
