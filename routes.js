@@ -59,7 +59,7 @@ internals.getBadgeLinks = function (request, reply) {
 }
 
 internals.serveHomePage = function(request, reply) {
-    reply.file('home.html');
+    reply.file('views/home.html');
 }
 
 module.exports = [{
