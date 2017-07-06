@@ -57,7 +57,16 @@ internals.getBadgeLinks = function (request, reply) {
 
     reply(slug).created('/github/' + slug.user + '/' + slug.repo);
 }
+
+internals.serveHomePage = function(request, reply) {
+    reply.file('home.html');
+}
+
 module.exports = [{
+  method: 'GET',
+  path: '/',
+  handler: internals.serveHomePage
+  }, {
     method: 'GET',
     path: '/slugs',
     config: {
