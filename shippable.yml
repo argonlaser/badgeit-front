@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+  - 6.0.0
+
+build:
+  ci:
+    - npm install -g now
+    - sleep 2s
+    - npm install
+    - sleep 2s
+    - npm start &
+    - npm test
+
+  on_success:
+    - if [ "$BRANCH" == "master" ] && [ "$IS_PULL_REQUEST" == false ]; then
+      bash ./dev-scripts/deploy.sh
+      fi
