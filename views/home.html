@@ -3,17 +3,21 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>badgeit</title>
+    <link rel="stylesheet" type="text/css" href="home.css">.
 </head>
 <body>
+  <div class = 'main'>
     <input type="text" id="repoUrl" />
+
     <button onclick="openResultsPage()">Get Badges</button>
+</div>
     <script>
         function openResultsPage() {
             var repoUrl = document.getElementById('repoUrl').value;
 
             if (!repoUrl) {
-                // TODO: alert the user without fancy popups,
-                // may be change the border of textbox to red
+                // Change the border of textbox to red
+                document.getElementById('repoUrl').className = document.getElementById('repoUrl').className + " error";  // this adds the error class
                 return
             }
 
