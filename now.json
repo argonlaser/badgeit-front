@@ -1,0 +1,8 @@
+{
+    "name": "badgeit-front",
+    "type": "npm",
+    "env": {
+       "NODE_ENV": "production"
+     },
+     "alias": "badgeit-front"
+}
