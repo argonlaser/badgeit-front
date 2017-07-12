@@ -13,6 +13,8 @@
     "joi": "7.x.x",
     "lab": "7.x.x",
     "lout": "7.x.x",
+    "socket.io": "^2.0.3",
+    "superagent": "^3.5.2",
     "vision": "4.x.x"
   },
   "scripts": {

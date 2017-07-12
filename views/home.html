@@ -3,14 +3,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>badgeit</title>
-    <link rel="stylesheet" type="text/css" href="home.css">.
 </head>
 <body>
-  <div class = 'main'>
     <input type="text" id="repoUrl" />
 
     <button onclick="openResultsPage()">Get Badges</button>
-</div>
     <script>
         function openResultsPage() {
             var repoUrl = document.getElementById('repoUrl').value;
@@ -21,7 +18,7 @@
                 return
             }
 
-            parent.location = '/' + repoUrl;
+            parent.location = '/w/' + repoUrl;
         }
     </script>
 </body>

@@ -10,8 +10,9 @@ const server = new Hapi.Server(config);
 
 const port = 8080;
 const host = '0.0.0.0' || 'localhost';
-server.connection({ port: port, host: host });
 
+server.connection({ port: port, host: host });
+const io = require('socket.io')(server.listener);
 server.register([Vision, Inert], function(err) {
 
     if (err) {
@@ -25,5 +26,8 @@ server.register([Vision, Inert], function(err) {
         console.log('Server running at:', server.info.uri);
     });
 });
+
+
+global.io = io;
 
 module.exports = server;
