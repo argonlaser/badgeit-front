@@ -13,7 +13,7 @@ internals.serveFavicon = function (request, reply) {
 internals.serveResultPage = function (request, reply) {
   var repoName = request.params.repoName
   var API_BASE_URL = 'http://34.211.102.93'
-  var CALLBACK_URL = 'http://badgeit-front.now.sh/callback'
+  var CALLBACK_URL = 'https://badgeit-front.now.sh/callback'
 
   superagent
     .get(API_BASE_URL + '/badges')
