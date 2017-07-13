@@ -8,7 +8,7 @@
     this is a result page
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io.connect('http://localhost:8080');
+  var socket = io.connect('http://badgeit-front.now.sh/');
   socket.on('news', function (data) {
     console.log('NEWS:', data);
   });
