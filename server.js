@@ -2,6 +2,10 @@ const Hapi = require('hapi')
 const Inert = require('inert')
 const Vision = require('vision')
 const Routes = require('./routes')
+const Https = {
+    register: require('hapi-require-https'),
+    options: {}
+}
 
 const config = {}
 const server = new Hapi.Server(config)
@@ -12,7 +16,7 @@ const host = 'localhost'
 server.connection({ port: port, host: host })
 const io = require('socket.io')(server.listener)
 
-server.register([Vision, Inert], function (err) {
+server.register([Vision, Inert, Https], function (err) {
   if (err) {
     console.error('Failed loading plugins')
     process.exit(1)
