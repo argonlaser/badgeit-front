@@ -6,5 +6,12 @@
 </head>
 <body>
     this is a result page
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://badgeit-front.now.sh/');
+  socket.on('news', function (data) {
+    console.log('NEWS:', data);
+  });
+</script>
 </body>
 </html>

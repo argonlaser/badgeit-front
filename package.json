@@ -10,15 +10,26 @@
     "handlebars": "4.x.x",
     "hapi": "11.x.x",
     "inert": "3.x.x",
-    "joi": "7.x.x",
     "lab": "7.x.x",
     "lout": "7.x.x",
+    "socket.io": "^2.0.3",
+    "superagent": "^3.5.2",
     "vision": "4.x.x"
   },
   "scripts": {
     "start": "node server.js",
-    "test": "lab -a code -c",
+    "code-style-fix": "standard --fix",
+    "code-style": "standard",
+    "test": "standard && lab -a",
     "test-tap": "lab -a code -r tap -o tests.tap",
     "test-cov-html": "lab -a code -r html -o coverage.html"
+  },
+  "standard": {
+  "ignore": [
+    "/test/*"
+  ]
+  },
+  "devDependencies": {
+    "standard": "^10.0.2"
   }
 }
