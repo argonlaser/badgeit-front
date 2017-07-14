@@ -10,8 +10,8 @@ const Https = {
 const config = {}
 const server = new Hapi.Server(config)
 
-const port = 8080
-const host = 'localhost'
+const port = process.env.BADGEIT_FRONT_PORT
+const host = process.env.BADGEIT_FRONT_HOST
 
 server.connection({ port: port, host: host })
 const io = require('socket.io')(server.listener)

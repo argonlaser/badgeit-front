@@ -13,24 +13,27 @@ internals.serveFavicon = function (request, reply) {
 internals.serveResultPage = function (request, reply) {
   var repoName = request.params.repoName
   var API_BASE_URL = 'http://34.211.102.93'
-  var CALLBACK_URL = 'https://badgeit-front.now.sh/callback'
+  var domain
+
+  if (process.env.NODE_ENV === 'production') {
+    domain = 'badgeit-front.now.sh'
+  } else {
+    domain = process.env.BADGEIT_FRONT_HOST + ':' + process.env.BADGEIT_FRONT_PORT
+  }
+  var CALLBACK_URL = 'https://' + domain + '/callback'
 
   superagent
     .get(API_BASE_URL + '/badges')
       .query({ download: 'git', remote: repoName, callback: CALLBACK_URL }) // query string
       .end(function (err, res) {
         // Do something
-        console.log('Error', err, 'Res', res.body)
         reply.file('views/result.html')
       })
 }
 
 internals.handleCallback = function (request, reply) {
   console.log('Trying to connect to socket')
-    // global.io.on('connection', function (socket) {
-    //   console.log('Connection to socket done');
-    //   socket.emit('news', { reqData: request.payload });
-    // });
+  console.log(request.payload)
   global.io.sockets.emit('news', { reqData: request.payload })
 
   reply('success')
