@@ -6,12 +6,16 @@
 </head>
 <body>
     this is a result page
+
+    <p id="demo"></p>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var host = window.location.origin;
+  var host = 'http:'+'//'+location.hostname+(location.port ? ':'+location.port: '' ) + '/'
   var socket = io.connect(host, {secure: true});
+  console.log('CLIENT: ' ,  host)
   socket.on('news', function (data) {
     console.log('NEWS:', data);
+    document.getElementById("demo").innerHTML = data;
   });
 </script>
 </body>

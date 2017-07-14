@@ -14,13 +14,15 @@ internals.serveResultPage = function (request, reply) {
   var repoName = request.params.repoName
   var API_BASE_URL = 'http://34.211.102.93'
   var domain
-
-  if (process.env.NODE_ENV === 'production') {
-    domain = 'badgeit-front.now.sh'
+  console.log('ENV', process.env.NODE_ENV)
+  if (process.env.NODE_ENV) {
+    domain = 'http://0a6e08c6.ngrok.io'
   } else {
-    domain = process.env.BADGEIT_FRONT_HOST + ':' + process.env.BADGEIT_FRONT_PORT
+    domain = 'http://localhost:8080'
   }
-  var CALLBACK_URL = 'https://' + domain + '/callback'
+  var CALLBACK_URL = domain + '/callback'
+
+console.log(CALLBACK_URL)
 
   superagent
     .get(API_BASE_URL + '/badges')
@@ -32,8 +34,7 @@ internals.serveResultPage = function (request, reply) {
 }
 
 internals.handleCallback = function (request, reply) {
-  console.log('Trying to connect to socket')
-  console.log(request.payload)
+  console.log('Trying to connect to socket', request.payload)
   global.io.sockets.emit('news', { reqData: request.payload })
 
   reply('success')

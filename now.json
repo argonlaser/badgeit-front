@@ -2,6 +2,7 @@
     "name": "badgeit-front",
     "type": "npm",
     "env": {
+       "BADGEIT_FRONT_PORT": 8080,
        "NODE_ENV": "production"
      },
      "alias": "badgeit-front"

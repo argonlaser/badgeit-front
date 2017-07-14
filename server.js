@@ -12,6 +12,7 @@ const server = new Hapi.Server(config)
 
 const port = process.env.BADGEIT_FRONT_PORT
 const host = process.env.BADGEIT_FRONT_HOST
+console.log('START:', port, host)
 
 server.connection({ port: port, host: host })
 const io = require('socket.io')(server.listener)

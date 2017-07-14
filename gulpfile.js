@@ -8,7 +8,6 @@ gulp.task('dev', function () {
     env: {
       'BADGEIT_FRONT_PORT': 8080,
       'BADGEIT_FRONT_HOST': 'localhost'
-      'NODE_ENV' : 'production'
     }
   })
 })
