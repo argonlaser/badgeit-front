@@ -8,7 +8,7 @@
     this is a result page
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io.connect('https://badgeit-front.now.sh/');
+  var socket = io.connect('https://badgeit-front.now.sh/', {secure: true});
   socket.on('news', function (data) {
     console.log('NEWS:', data);
   });
