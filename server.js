@@ -3,8 +3,8 @@ const Inert = require('inert')
 const Vision = require('vision')
 const Routes = require('./routes')
 const Https = {
-    register: require('hapi-require-https'),
-    options: {}
+  register: require('hapi-require-https'),
+  options: {}
 }
 
 const config = {}
