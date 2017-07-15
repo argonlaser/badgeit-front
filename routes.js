@@ -17,13 +17,15 @@ internals.serveResultPage = function (request, reply) {
   var repoName = request.params.repoName
   var API_BASE_URL = 'http://34.211.102.93'
   var domain
-  console.log('serveResultPage',' | ', 'ENV : ', process.env.NODE_ENV)
+
   if (process.env.NODE_ENV === 'production') {
-    domain = 'http://b45baf6c.ngrok.io'
+  console.log('serveResultPage True',' | ', 'ENV : ', process.env.NODE_ENV)
+  domain = 'https://badgeit-front.now.sh'
   } else {
-    domain = 'http://localhost:8080'
+  console.log('serveResultPage False',' | ', 'ENV : ', process.env.NODE_ENV)
+    domain = 'https://05822d6a.ngrok.io'
   }
-  var CALLBACK_URL = 'https://05822d6a.ngrok.io' + '/callback'
+  var CALLBACK_URL = domain + '/callback'
 
   console.log('serveResultPage', '|', 'callback url:', CALLBACK_URL)
 
@@ -61,8 +63,6 @@ internals.handleCallback = function (request, reply) {
       })
 
   });
-//  global.io.sockets.emit('badges received', { reqData: request.payload })
-
   reply('success')
 }
 

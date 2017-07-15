@@ -10,16 +10,18 @@
     <p id="demo"></p>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var host = window.location.origin
-
-  // Listen to '/'
-  var socket = io.connect('https://05822d6a.ngrok.io', {secure: true});
+  // Extract host from url
+  var host = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
   console.log('CLIENT: ' ,  host)
 
+  // Listen to '/'
+  var socket = io.connect(host, {secure: true});
+
+
     socket.on('news', function (data) {
-      console.log('BADGES RECEIVED:', data);
+      var badges = data.reqData.badges
       document.getElementById("demo").innerHTML = data.reqData.badges;
-      console.log('received on socket' + socket.id)
+      console.log('Socket : ', socket.id , 'data : ', badges)
     })
 </script>
 </body>
