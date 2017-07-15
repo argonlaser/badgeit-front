@@ -10,13 +10,17 @@
     <p id="demo"></p>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var host = 'http:'+'//'+location.hostname+(location.port ? ':'+location.port: '' ) + '/'
-  var socket = io.connect(host, {secure: true});
+  var host = window.location.origin
+
+  // Listen to '/'
+  var socket = io.connect('https://05822d6a.ngrok.io', {secure: true});
   console.log('CLIENT: ' ,  host)
-  socket.on('news', function (data) {
-    console.log('NEWS:', data);
-    document.getElementById("demo").innerHTML = data;
-  });
+
+    socket.on('news', function (data) {
+      console.log('BADGES RECEIVED:', data);
+      document.getElementById("demo").innerHTML = data.reqData.badges;
+      console.log('received on socket' + socket.id)
+    })
 </script>
 </body>
 </html>
