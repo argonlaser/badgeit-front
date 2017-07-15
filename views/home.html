@@ -1,13 +1,92 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>badgeit</title>
+  <title>badgeit</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Badgeit io">
+  <meta name="author" content="argonlaser">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  .container-4{
+    overflow: hidden;
+    width: 300px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .container-4 input#repoUrl{
+  width: 300px;
+  height: 50px;
+  background: #2b303b;
+  border: none;
+  font-size: 10pt;
+  float: left;
+  color: #fff;
+  padding-left: 15px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.container-4 input#repoUrl::-webkit-input-placeholder {
+color: #65737e;
+}
+
+.container-4 input#repoUrl:-moz-placeholder { /* Firefox 18- */
+color: #65737e;
+}
+
+.container-4 input#repoUrl::-moz-placeholder {  /* Firefox 19+ */
+color: #65737e;
+}
+
+.container-4 input#repoUrl:-ms-input-placeholder {
+color: #65737e;
+}
+.container-4 button.icon{
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  border: none;
+  background: #232833;
+  height: 50px;
+  width: 50px;
+  color: #4f5b66;
+  opacity: 0;
+  font-size: 10pt;
+
+  -webkit-transition: all .55s ease;
+  -moz-transition: all .55s ease;
+  -ms-transition: all .55s ease;
+  -o-transition: all .55s ease;
+  transition: all .55s ease;
+}
+
+.container-4:hover button.icon, .container-4:active button.icon, .container-4:focus button.icon{
+    outline: none;
+    opacity: 1;
+    margin-left: -50px;
+  }
+
+  .container-4:hover button.icon:hover{
+    background: white;
+  }
+</style>
+
 </head>
 <body>
-    <input type="text" id="repoUrl" />
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <div class="box">
+    <div class="container-4">
+      <input type="search" id="repoUrl" placeholder="Search..."/>
+      <button class="icon" onclick="openResultsPage()"><i class="fa fa-search"></i></button>
+    </div>
+  </div>
 
-    <button onclick="openResultsPage()">Get Badges</button>
     <script>
         function openResultsPage() {
             var repoUrl = document.getElementById('repoUrl').value;
