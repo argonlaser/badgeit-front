@@ -41,7 +41,6 @@ internals.serveResultPage = function (request, reply) {
 
 internals.handleCallback = function (request, reply) {
   console.log('In handleCallback | ' + request.payload)
-  var badges = request.payload
   global.io.sockets.on('connection', function (socket) {
       // Socket connected
     console.log('Socket connected| (New client id=' + socket.id + ').')
@@ -56,7 +55,7 @@ internals.handleCallback = function (request, reply) {
       // Remove the socket on disconnection
     socket.on('disconnect', function () {
       var socketIndex = clients.indexOf(socket)
-      if (socketIndex != -1) {
+      if (socketIndex !== -1) {
         clients.splice(socketIndex, 1)
         console.info('Client gone (id=' + socket.id + ').')
       }
