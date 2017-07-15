@@ -2,7 +2,7 @@ const Hapi = require('hapi')
 const Inert = require('inert')
 const Vision = require('vision')
 const Routes = require('./routes')
-var sio = require("socket.io");
+var sio = require('socket.io')
 
 const Https = {
   register: require('hapi-require-https'),

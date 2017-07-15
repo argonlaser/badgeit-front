@@ -19,10 +19,10 @@ internals.serveResultPage = function (request, reply) {
   var domain
 
   if (process.env.NODE_ENV === 'production') {
-  console.log('serveResultPage True',' | ', 'ENV : ', process.env.NODE_ENV)
-  domain = 'https://badgeit-front.now.sh'
+    console.log('serveResultPage True', ' | ', 'ENV : ', process.env.NODE_ENV)
+    domain = 'https://badgeit-front.now.sh'
   } else {
-  console.log('serveResultPage False',' | ', 'ENV : ', process.env.NODE_ENV)
+    console.log('serveResultPage False', ' | ', 'ENV : ', process.env.NODE_ENV)
     domain = 'https://05822d6a.ngrok.io'
   }
   var CALLBACK_URL = domain + '/callback'
@@ -34,7 +34,7 @@ internals.serveResultPage = function (request, reply) {
       .query({ download: 'git', remote: repoName, callback: CALLBACK_URL }) // query string
       .end(function (err, res) {
         // Do something
-        console.log('POST /badges | ', 'Error: ', err )
+        console.log('POST /badges | ', 'Error: ', err)
         reply.file('views/result.html')
       })
 }
@@ -42,27 +42,26 @@ internals.serveResultPage = function (request, reply) {
 internals.handleCallback = function (request, reply) {
   console.log('In handleCallback | ' + request.payload)
   var badges = request.payload
-  global.io.sockets.on('connection', function(socket) {
+  global.io.sockets.on('connection', function (socket) {
       // Socket connected
-      console.log('Socket connected| (New client id=' + socket.id + ').');
+    console.log('Socket connected| (New client id=' + socket.id + ').')
 
       // Save the socket id to redis store
-      clients.push(socket)
+    clients.push(socket)
 
       // Send an event once socket is connected
-      console.log('Data emitted: | (New client id=' + socket.id + ').');
-      socket.emit('news', { reqData: request.payload })
+    console.log('Data emitted: | (New client id=' + socket.id + ').')
+    socket.emit('news', { reqData: request.payload })
 
       // Remove the socket on disconnection
-      socket.on('disconnect', function() {
-            var socketIndex = clients.indexOf(socket);
-            if (socketIndex != -1) {
-                clients.splice(socketIndex, 1);
-                console.info('Client gone (id=' + socket.id + ').');
-            }
-      })
-
-  });
+    socket.on('disconnect', function () {
+      var socketIndex = clients.indexOf(socket)
+      if (socketIndex != -1) {
+        clients.splice(socketIndex, 1)
+        console.info('Client gone (id=' + socket.id + ').')
+      }
+    })
+  })
   reply('success')
 }
 
