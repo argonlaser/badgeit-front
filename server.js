@@ -2,6 +2,8 @@ const Hapi = require('hapi')
 const Inert = require('inert')
 const Vision = require('vision')
 const Routes = require('./routes')
+var sio = require('socket.io')
+
 const Https = {
   register: require('hapi-require-https'),
   options: {}
@@ -10,11 +12,14 @@ const Https = {
 const config = {}
 const server = new Hapi.Server(config)
 
-const port = 8080
-const host = 'localhost'
+const port = process.env.BADGEIT_FRONT_PORT
+const host = process.env.BADGEIT_FRONT_HOST
+console.log('START:', port, host)
 
 server.connection({ port: port, host: host })
-const io = require('socket.io')(server.listener)
+
+const io = sio(server.listener)
+global.io = io
 
 server.register([Vision, Inert, Https], function (err) {
   if (err) {
@@ -29,5 +34,4 @@ server.register([Vision, Inert, Https], function (err) {
   })
 })
 
-global.io = io
 module.exports = server

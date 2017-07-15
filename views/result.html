@@ -6,12 +6,23 @@
 </head>
 <body>
     this is a result page
+
+    <p id="demo"></p>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io.connect('https://badgeit-front.now.sh/', {secure: true});
-  socket.on('news', function (data) {
-    console.log('NEWS:', data);
-  });
+  // Extract host from url
+  var host = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+  console.log('CLIENT: ' ,  host)
+
+  // Listen to '/'
+  var socket = io.connect(host, {secure: true});
+
+
+    socket.on('news', function (data) {
+      var badges = data.reqData.badges
+      document.getElementById("demo").innerHTML = data.reqData.badges;
+      console.log('Socket : ', socket.id , 'data : ', badges)
+    })
 </script>
 </body>
 </html>
