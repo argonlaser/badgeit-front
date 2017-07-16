@@ -66,9 +66,20 @@ internals.handleCallback = function (request, reply) {
 
 module.exports = [
   {
+
     method: 'GET',
     path: '/',
     handler: internals.serveHomePage
+  },{
+    method: 'GET',
+    path: '/{param*}',
+    handler: {
+      directory: {
+            path: '.',
+            redirectToSlash: true,
+            index: true
+        }
+    }
   },
   {
     method: 'GET',
