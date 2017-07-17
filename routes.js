@@ -23,7 +23,7 @@ internals.serveResultPage = function (request, reply) {
     domain = 'https://badgeit-front.now.sh'
   } else {
     console.log('serveResultPage False', ' | ', 'ENV : ', process.env.NODE_ENV)
-    domain = 'https://05822d6a.ngrok.io'
+    domain = 'https://9a101710.ngrok.io'
   }
   var CALLBACK_URL = domain + '/callback'
 
@@ -42,17 +42,17 @@ internals.serveResultPage = function (request, reply) {
 internals.handleCallback = function (request, reply) {
   console.log('In handleCallback | ' + request.payload)
   global.io.sockets.on('connection', function (socket) {
-      // Socket connected
+    // Socket connected
     console.log('Socket connected| (New client id=' + socket.id + ').')
 
-      // Save the socket id to redis store
+    // Save the socket id to redis store
     clients.push(socket)
 
-      // Send an event once socket is connected
+    // Send an event once socket is connected
     console.log('Data emitted: | (New client id=' + socket.id + ').')
     socket.emit('news', { reqData: request.payload })
 
-      // Remove the socket on disconnection
+    // Remove the socket on disconnection
     socket.on('disconnect', function () {
       var socketIndex = clients.indexOf(socket)
       if (socketIndex !== -1) {
@@ -66,19 +66,20 @@ internals.handleCallback = function (request, reply) {
 
 module.exports = [
   {
-
     method: 'GET',
     path: '/',
     handler: internals.serveHomePage
-  },{
+  },
+  // Serve static routes
+  {
     method: 'GET',
     path: '/{param*}',
     handler: {
       directory: {
-            path: '.',
-            redirectToSlash: true,
-            index: true
-        }
+        path: '.',
+        redirectToSlash: true,
+        index: true
+      }
     }
   },
   {

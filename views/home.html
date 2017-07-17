@@ -14,12 +14,17 @@
 
   <div class="box">
     <div class="container-4">
-      <input type="search" id="repoUrl" placeholder="Search..."/>
+      <input type="search" id="repoUrl" placeholder="Search..." onkeypress="handleKeypress(event)"/>
       <button class="icon" onclick="openResultsPage()"><i class="fa fa-search"></i></button>
     </div>
   </div>
 
     <script>
+        function handleKeypress(event) {
+          if (event.which === 13 || event.keyCode === 13) {
+            openResultsPage();
+          }
+        }
         function openResultsPage() {
             var repoUrl = document.getElementById('repoUrl').value;
 
