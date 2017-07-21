@@ -15,7 +15,8 @@
     "lout": "7.x.x",
     "socket.io": "^2.0.3",
     "superagent": "^3.5.2",
-    "vision": "4.x.x"
+    "vision": "4.x.x",
+    "winston": "^2.3.1"
   },
   "scripts": {
     "start": "node server.js",
@@ -33,7 +34,6 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
-    "standard": "^10.0.2",
-    "winston": "^2.3.1"
+    "standard": "^10.0.2"
   }
 }
