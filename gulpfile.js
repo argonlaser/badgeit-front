@@ -6,9 +6,17 @@ gulp.task('dev', function () {
     script: 'server.js',
     ext: 'js',
     env: {
-      'NODE_ENV': 'production',
-      'BADGEIT_FRONT_PORT': 8080,
-      'BADGEIT_FRONT_HOST': 'localhost'
+      'NODE_ENV': 'development'
+    }
+  })
+})
+
+gulp.task('prod', function () {
+  nodemon({
+    script: 'server.js',
+    ext: 'js',
+    env: {
+      'NODE_ENV': 'production'
     }
   })
 })

@@ -4,7 +4,6 @@ To deploy the front service in now server, give the following command:
 ```
 For development use gulp dev
 
-For production use, set NODE_ENV=production
-node server.js
+For production use, use gulp prod
 
 You will get the latest changes in ```badgeit-front.now.sh```.

@@ -3,13 +3,13 @@ const Inert = require('inert')
 const Vision = require('vision')
 const Routes = require('./routes')
 const logger = require('./Logger/winston.js')
-const config = require('./config.js')
+const config = require('./config.js')[process.env.NODE_ENV]
 
 const Https = {
   register: require('hapi-require-https'),
   options: {}
 }
-
+logger.info('Initialising the routes for the server')
 const serverConfig = {}
 const server = new Hapi.Server(serverConfig)
 

@@ -1,8 +1,9 @@
 const superagent = require('superagent')
 const logger = require('./Logger/winston.js')
-const config = require('./config.js')
+const config = require('./config.js')[process.env.NODE_ENV]
 
-logger.info(config[NODE_ENV_VAR])
+logger.info('Initialising the routes for the server')
+logger.info(config)
 
 let internals = {}
 let clients = []
