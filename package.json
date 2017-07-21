@@ -33,6 +33,7 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
-    "standard": "^10.0.2"
+    "standard": "^10.0.2",
+    "winston": "^2.3.1"
   }
 }

@@ -1,15 +1,16 @@
 const superagent = require('superagent')
+const logger = require('./Logger/winston.js')
 
 let internals = {}
 let clients = []
 
 internals.serveHomePage = function (request, reply) {
-  console.log('serveHomePage | Serve Home')
+  logger.info('serveHomePage | Serve Home')
   reply.file('views/home.html')
 }
 
 internals.serveFavicon = function (request, reply) {
-  console.log('serveFavicon | Serve Favicon')
+  logger.info('serveFavicon | Serve Favicon')
   reply('success')
 }
 
@@ -19,45 +20,61 @@ internals.serveResultPage = function (request, reply) {
   var domain
 
   if (process.env.NODE_ENV === 'production') {
-    console.log('serveResultPage True', ' | ', 'ENV : ', process.env.NODE_ENV)
+    logger.info('serveResultPage True', ' | ', 'ENV : ', process.env.NODE_ENV)
     domain = 'https://badgeit-front.now.sh'
   } else {
-    console.log('serveResultPage False', ' | ', 'ENV : ', process.env.NODE_ENV)
-    domain = 'https://9a101710.ngrok.io'
+    logger.info('serveResultPage False', ' | ', 'ENV : ', process.env.NODE_ENV)
+    domain = 'https://255bd133.ngrok.io'
   }
   var CALLBACK_URL = domain + '/callback'
 
-  console.log('serveResultPage', '|', 'callback url:', CALLBACK_URL)
+  logger.info('serveResultPage', '|', 'callback url:', CALLBACK_URL)
 
   superagent
     .get(API_BASE_URL + '/badges')
       .query({ download: 'git', remote: repoName, callback: CALLBACK_URL }) // query string
       .end(function (err, res) {
         // Do something
-        console.log('POST /badges | ', 'Error: ', err)
+        if (err) {
+          const errorMsg = 'Error in posting to API: '
+          logger.error(errorMsg, err)
+          reply(errorMsg).code(404)
+        }
+        logger.info('POST /badges')
         reply.file('views/result.html')
       })
 }
 
 internals.handleCallback = function (request, reply) {
-  console.log('In handleCallback | ' + request.payload)
+  const badges = request.payload.badges
+  const remote = request.payload.remote
+  const error = request.payload.error
+
+  logger.info('In handleCallback | ', 'Remote: ', remote)
+
+  if (error) {
+    logger.error('handleCallback', error)
+    reply('Error', error).code(404)
+    return
+  }
+
   global.io.sockets.on('connection', function (socket) {
     // Socket connected
-    console.log('Socket connected| (New client id=' + socket.id + ').')
+    logger.info('Socket connected| (New client id=' + socket.id + ').')
 
     // Save the socket id to redis store
     clients.push(socket)
 
     // Send an event once socket is connected
-    console.log('Data emitted: | (New client id=' + socket.id + ').')
-    socket.emit('news', { reqData: request.payload })
+    logger.info('Data emitted: | (New client id=' + socket.id + ').')
+    socket.emit('news', { reqData: badges })
 
     // Remove the socket on disconnection
     socket.on('disconnect', function () {
       var socketIndex = clients.indexOf(socket)
       if (socketIndex !== -1) {
         clients.splice(socketIndex, 1)
-        console.info('Client gone (id=' + socket.id + ').')
+        logger.info('Client gone (id=' + socket.id + ').')
       }
     })
   })

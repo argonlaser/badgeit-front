@@ -19,8 +19,8 @@
 
 
     socket.on('news', function (data) {
-      var badges = data.reqData.badges
-      document.getElementById("demo").innerHTML = data.reqData.badges;
+      var badges = data.reqData
+      document.getElementById("demo").innerHTML = badges;
       console.log('Socket : ', socket.id , 'data : ', badges)
       // TBD: Display in a user friendly format using a view engine framework
     })
