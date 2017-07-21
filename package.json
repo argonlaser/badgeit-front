@@ -19,7 +19,7 @@
     "winston": "^2.3.1"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "gulp prod",
     "code-style-fix": "standard --fix",
     "code-style": "standard",
     "test": "standard && lab -a",
