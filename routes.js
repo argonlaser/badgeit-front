@@ -1,5 +1,8 @@
 const superagent = require('superagent')
 const logger = require('./Logger/winston.js')
+const config = require('./config.js')
+
+logger.info(config[NODE_ENV_VAR])
 
 let internals = {}
 let clients = []
@@ -15,20 +18,11 @@ internals.serveFavicon = function (request, reply) {
 }
 
 internals.serveResultPage = function (request, reply) {
-  var repoName = request.params.repoName
-  var API_BASE_URL = 'http://34.211.102.93'
-  var domain
+  const repoName = request.params.repoName
+  const API_BASE_URL = config.API_BASE_URL
+  const CALLBACK_URL = config.FRONT_URL + '/callback'
 
-  if (process.env.NODE_ENV === 'production') {
-    logger.info('serveResultPage True', ' | ', 'ENV : ', process.env.NODE_ENV)
-    domain = 'https://badgeit-front.now.sh'
-  } else {
-    logger.info('serveResultPage False', ' | ', 'ENV : ', process.env.NODE_ENV)
-    domain = 'https://255bd133.ngrok.io'
-  }
-  var CALLBACK_URL = domain + '/callback'
-
-  logger.info('serveResultPage', '|', 'callback url:', CALLBACK_URL)
+  logger.info('serveResultPage', '|', 'callback url:', CALLBACK_URL, 'api base url: ', API_BASE_URL)
 
   superagent
     .get(API_BASE_URL + '/badges')

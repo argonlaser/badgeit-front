@@ -3,16 +3,18 @@ const Inert = require('inert')
 const Vision = require('vision')
 const Routes = require('./routes')
 const logger = require('./Logger/winston.js')
+const config = require('./config.js')
+
 const Https = {
   register: require('hapi-require-https'),
   options: {}
 }
 
-const config = {}
-const server = new Hapi.Server(config)
+const serverConfig = {}
+const server = new Hapi.Server(serverConfig)
 
-const port = process.env.BADGEIT_FRONT_PORT
-const host = process.env.BADGEIT_FRONT_HOST
+const port = config.SERVER.port
+const host = config.SERVER.host
 logger.info('START:', port, host)
 
 server.connection({ port: port, host: host })
