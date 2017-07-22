@@ -12,7 +12,9 @@
 <script>
   // Extract host from url
   var host = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
-  console.log('CLIENT: ' ,  host)
+  var room = location.pathname.substring(3)
+
+  console.log('Room: ' ,  room)
 
   // Listen to '/'
   var socket = io.connect(host, {secure: true});
