@@ -20,3 +20,5 @@ gulp.task('prod', function () {
     }
   })
 })
+
+gulp.task('default', ['dev'])
