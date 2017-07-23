@@ -19,15 +19,30 @@ internals.serveFavicon = function (request, reply) {
 }
 
 internals.serveResultPage = function (request, reply) {
-  const repoName = request.params.repoName
+  const remote = request.params.repoName
   const API_BASE_URL = config.API_BASE_URL
   const CALLBACK_URL = config.FRONT_URL + '/callback'
+
+  const redisClient = request.server.plugins['hapi-redis'].client
+
+  reply.file('views/result.html')
+
+  redisClient.get(remote, function(err, res) {
+    if(err) {
+      logger.error('Redis Connection failed : ', err)
+    }
+    if (res === null) {
+      logger.warn('Redis Cache missed. ', res)
+    }
+    logger.info('Data found in cache', res)
+
+  })
 
   logger.info('serveResultPage', '|', 'callback url:', CALLBACK_URL, 'api base url: ', API_BASE_URL)
 
   superagent
     .get(API_BASE_URL + '/badges')
-      .query({ download: 'git', remote: repoName, callback: CALLBACK_URL }) // query string
+      .query({ download: 'git', remote: remote, callback: CALLBACK_URL }) // query string
       .end(function (err, res) {
         // Do something
         if (err) {
@@ -36,7 +51,6 @@ internals.serveResultPage = function (request, reply) {
           reply(errorMsg).code(404)
         }
         logger.info('POST /badges')
-        reply.file('views/result.html')
       })
 }
 
@@ -44,6 +58,16 @@ internals.handleCallback = function (request, reply) {
   const badges = request.payload.badges
   const remote = request.payload.remote
   const error = request.payload.error
+  const redisClient = request.server.plugins['hapi-redis'].client
+
+  redisClient.set(remote, badges, function(err, res) {
+    if(err) {
+      logger.warn('Redis connection screwed', err)
+    }
+    if(res == 'OK') {
+      logger.info('Successfully cached for remote: ', remote)
+    }
+  })
 
   logger.info('In handleCallback | ', 'Remote: ', remote)
 
@@ -62,8 +86,8 @@ internals.handleCallback = function (request, reply) {
 
     // Send an event once socket is connected
     logger.info('Data emitted: | (New client id=' + socket.id + ').')
-    socket.emit('news', { reqData: badges })
 
+    socket.emit('news', { reqData: badges })
     // Remove the socket on disconnection
     socket.on('disconnect', function () {
       var socketIndex = clients.indexOf(socket)
