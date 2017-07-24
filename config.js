@@ -5,7 +5,7 @@ module.exports =
     'API_BASE_URL': 'http://34.211.102.93',
     'REDIS': {
       'port': 6379,
-      'host': '34.211.102.93'
+      'host': '127.0.0.1'
     },
     'SERVER': {
       'port': 8080,
