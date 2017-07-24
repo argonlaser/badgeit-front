@@ -1,6 +1,6 @@
-const superagent = require('superagent')
 const logger = require('./Logger/winston.js')
 const config = require('./config.js')[process.env.NODE_ENV]
+const apiCall = require('./apiCall.js')
 
 logger.info('Initialising the routes for the server')
 logger.info(config)
@@ -27,31 +27,25 @@ internals.serveResultPage = function (request, reply) {
 
   reply.file('views/result.html')
 
-  redisClient.get(remote, function(err, res) {
-    if(err) {
+  redisClient.get(remote, function (err, res) {
+    if (err) {
       logger.error('Redis Connection failed : ', err)
     }
     if (res === null) {
       logger.warn('Redis Cache missed. ', res)
     }
     logger.info('Data found in cache', res)
-
   })
 
   logger.info('serveResultPage', '|', 'callback url:', CALLBACK_URL, 'api base url: ', API_BASE_URL)
 
-  superagent
-    .get(API_BASE_URL + '/badges')
-      .query({ download: 'git', remote: remote, callback: CALLBACK_URL }) // query string
-      .end(function (err, res) {
-        // Do something
-        if (err) {
-          const errorMsg = 'Error in posting to API: '
-          logger.error(errorMsg, err)
-          reply(errorMsg).code(404)
-        }
-        logger.info('POST /badges')
-      })
+  apiCall.getBadges(remote, function (err, res) {
+    if (err) {
+      logger.error('Could not request API: ', err)
+    } else {
+      logger.info('Contacted API')
+    }
+  })
 }
 
 internals.handleCallback = function (request, reply) {
@@ -60,11 +54,11 @@ internals.handleCallback = function (request, reply) {
   const error = request.payload.error
   const redisClient = request.server.plugins['hapi-redis'].client
 
-  redisClient.set(remote, badges, function(err, res) {
-    if(err) {
+  redisClient.set(remote, badges, function (err, res) {
+    if (err) {
       logger.warn('Redis connection screwed', err)
     }
-    if(res == 'OK') {
+    if (res === 'OK') {
       logger.info('Successfully cached for remote: ', remote)
     }
   })
