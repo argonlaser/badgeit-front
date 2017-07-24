@@ -23,14 +23,15 @@ module.exports = function (request, reply) {
     return
   }
 
-  global.io.sockets.on('connection', function (socket) {
+  var nsp = global.io.of('/w/' + remote)
+  nsp.once('connection', function (socket) {
     // Socket connected
     logger.info('Socket connected| (New client id=' + socket.id + ').')
 
     // Send an event once socket is connected
     logger.info('Data emitted: | (New client id=' + socket.id + ').')
 
-    socket.emit('news', { reqData: badges })
+    nsp.emit('news', { reqData: badges })
     // Remove the socket on disconnection
     socket.on('disconnect', function () {
       logger.info('Client gone (id=' + socket.id + ').')
