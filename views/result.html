@@ -11,13 +11,13 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
   // Extract host from url
-  var host = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+  var host = window.location.href;
   var room = location.pathname.substring(3)
 
   console.log('Room: ' ,  room)
 
   // Listen to '/'
-  var socket = io.connect(host, {secure: true});
+  var socket = io.connect(host, {secure: true, forceNew:true});
 
 
     socket.on('news', function (data) {
