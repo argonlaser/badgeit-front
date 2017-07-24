@@ -11,13 +11,13 @@ const Https = {
 }
 
 var HapiRedisOpts = {
-    connection: {
-        "host": config.REDIS.host,
-        "port": config.REDIS.port,
-        "opts": {
-            "parser": "javascript"
-        }
+  connection: {
+    'host': config.REDIS.host,
+    'port': config.REDIS.port,
+    'opts': {
+      'parser': 'javascript'
     }
+  }
 }
 
 const HapiRedis = {
@@ -40,7 +40,7 @@ global.io = io
 
 server.register([Vision, Inert, Https, HapiRedis], function (err) {
   if (err) {
-    logger.error('Failed loading plugins')
+    logger.error('Failed loading plugins: ', err)
     process.exit(1)
   }
   logger.info('Initialising the routes for the server')
