@@ -11,7 +11,7 @@ module.exports = function (request, reply) {
 
   reply.file('views/result.html')
 
-  redisClient.get(remote, function (err, res) {
+  redisClient.get(remote, (err, res) => {
     if (err) {
       logger.error('Redis Connection failed : ', err)
     }
@@ -23,7 +23,7 @@ module.exports = function (request, reply) {
 
   logger.info('serveResultPage', '|', 'callback url:', CALLBACK_URL, 'api base url: ', API_BASE_URL)
 
-  apiCall.getBadges(remote, function (err, res) {
+  apiCall.getBadges(remote, (err, res) => {
     if (err) {
       logger.error('Could not request API: ', err)
     } else {

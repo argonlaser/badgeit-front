@@ -13,7 +13,7 @@ module.exports = function (request, reply) {
   }
 
   if (remote && badges) {
-    redisClient.set(remote, badges, function (err, res) {
+    redisClient.set(remote, badges, (err, res) => {
       if (err) {
         logger.warn('Redis connection screwed', err)
       }
@@ -26,7 +26,7 @@ module.exports = function (request, reply) {
   logger.info('In handleCallback | ', 'Remote: ', remote)
 
   var nsp = global.io.of('/w/' + remote)
-  nsp.once('connection', function (socket) {
+  nsp.once('connection', (socket) => {
     // Socket connected
     logger.info('Socket connected| (New client id=' + socket.id + ').')
 
@@ -35,7 +35,7 @@ module.exports = function (request, reply) {
 
     nsp.emit('news', { reqData: badges })
     // Remove the socket on disconnection
-    socket.on('disconnect', function () {
+    socket.on('disconnect', () => {
       logger.info('Client gone (id=' + socket.id + ').')
     })
   })

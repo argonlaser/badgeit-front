@@ -37,7 +37,7 @@ server.connection({ port: hapiPort, host: hapiHost })
 const io = require('socket.io')(server.listener)
 global.io = io
 
-server.register([Vision, Inert, Https, HapiRedis], function (err) {
+server.register([Vision, Inert, Https, HapiRedis], (err) => {
   if (err) {
     logger.error('Failed loading plugins: ', err)
     process.exit(1)
@@ -45,7 +45,7 @@ server.register([Vision, Inert, Https, HapiRedis], function (err) {
   logger.info('Initialising the routes for the server')
   server.route(Routes)
 
-  server.start(function () {
+  server.start(() => {
     logger.info('Server running at:', server.info.uri)
   })
 })
