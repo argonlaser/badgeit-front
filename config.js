@@ -1,7 +1,7 @@
 module.exports =
 {
   'development': {
-    'FRONT_URL': 'https://5054bedb.ngrok.io',
+    'FRONT_URL': 'https://3a11f242.ngrok.io',
     'API_BASE_URL': 'http://34.211.102.93',
     'REDIS': {
       'port': 6379,

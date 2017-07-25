@@ -29,11 +29,10 @@ logger.info('Initialising the routes for the server')
 const serverConfig = {}
 const server = new Hapi.Server(serverConfig)
 
-const port = config.SERVER.port
-const host = config.SERVER.host
-logger.info('START:', port, host)
+const hapiPort = config.SERVER.port
+const hapiHost = config.SERVER.host
 
-server.connection({ port: port, host: host })
+server.connection({ port: hapiPort, host: hapiHost })
 
 const io = require('socket.io')(server.listener)
 global.io = io
