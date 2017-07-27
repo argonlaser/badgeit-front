@@ -43,20 +43,12 @@ if (env === 'development') {
         level: 'debug', // Only write logs of warn level or higher
         colorize: true
       })
-      // new winston.transports.File({
-      //   level: env === 'development' ? 'debug' : 'info',
-      //   filename: logDir + '/logs.log',
-      //   maxsize: 1024 * 1024 * 10 // 10MB
-      // })
     ],
     exceptionHandlers: [
       new winston.transports.Console({
         level: 'debug', // Only write logs of warn level or higher
         colorize: true
       })
-      // new winston.transports.File({
-      //   filename: 'log/exceptions.log'
-      // })
     ]
   })
 }

@@ -10,7 +10,7 @@ exporter.getBadges = function (remoteUrl, callback) {
   superagent
     .get(API_BASE_URL + '/badges')
       .query({ download: 'git', remote: remoteUrl, callback: CALLBACK_URL }) // query string
-      .end(function (err, res) {
+      .end((err, res) => {
         logger.info('POST /badges')
         callback(err, res)
       })
