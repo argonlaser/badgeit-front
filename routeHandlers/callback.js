@@ -4,23 +4,11 @@ module.exports = function (request, reply) {
   const badges = request.payload.badges
   const remote = request.payload.remote
   const error = request.payload.error
-  const redisClient = request.server.plugins['hapi-redis'].client
 
   if (error) {
     logger.error('handleCallback', error)
     reply('Error', error).code(404)
     return
-  }
-
-  if (remote && badges) {
-    redisClient.set(remote, badges, (err, res) => {
-      if (err) {
-        logger.warn('Redis connection screwed', err)
-      }
-      if (res === 'OK') {
-        logger.info('Successfully cached for remote: ', remote)
-      }
-    })
   }
 
   logger.info('In handleCallback | ', 'Remote: ', remote)

@@ -7,19 +7,7 @@ module.exports = function (request, reply) {
   const API_BASE_URL = config.API_BASE_URL
   const CALLBACK_URL = config.FRONT_URL + '/callback'
 
-  const redisClient = request.server.plugins['hapi-redis'].client
-
   reply.file('views/result.html')
-
-  redisClient.get(remote, (err, res) => {
-    if (err) {
-      logger.error('Redis Connection failed : ', err)
-    }
-    if (res === null) {
-      logger.warn('Redis Cache missed. ', res)
-    }
-    logger.info('Data found in cache', res)
-  })
 
   logger.info('serveResultPage', '|', 'callback url:', CALLBACK_URL, 'api base url: ', API_BASE_URL)
 

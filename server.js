@@ -10,21 +10,6 @@ const Https = {
   options: {}
 }
 
-var HapiRedisOpts = {
-  connection: {
-    'host': config.REDIS.host,
-    'port': config.REDIS.port,
-    'opts': {
-      'parser': 'javascript'
-    }
-  }
-}
-
-const HapiRedis = {
-  register: require('hapi-redis'),
-  options: HapiRedisOpts
-}
-
 logger.info('Initialising the routes for the server')
 const serverConfig = {}
 const server = new Hapi.Server(serverConfig)
@@ -37,7 +22,7 @@ server.connection({ port: hapiPort, host: hapiHost })
 const io = require('socket.io')(server.listener)
 global.io = io
 
-server.register([Vision, Inert, Https, HapiRedis], (err) => {
+server.register([Vision, Inert, Https], (err) => {
   if (err) {
     logger.error('Failed loading plugins: ', err)
     process.exit(1)
