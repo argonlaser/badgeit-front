@@ -1,0 +1,223 @@
+@charset "ISO-8859-1";
+
+body, html, html a {
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.link, body {
+	position: relative;
+	font-family: fantasy;
+}
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	display: block;
+}
+
+.black-bakground {
+	background-color: black;
+}
+
+#projectName {
+	display: inline-block;
+	font-color: white;
+	color: white;
+	font-size: 15pt;
+	font-style: italic;
+	font-family: fantasy;
+}
+
+.funkyFont {
+	font-size: 15pt;
+	font-style: italic;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	border-color: #CCF;
+	border-radius: 9px;
+	width: 95%;
+}
+
+.projectNameDesign {
+	
+}
+
+.imgLogo {
+	display: block;
+	width: 40px !important;
+	height: 40px !important;
+}
+
+.panel-style {
+	
+}
+
+.positionRelative {
+	position: relative !important;
+}
+
+.display-inline {
+	display: inline;
+}
+
+#selectedBadge, #selectedBadgeFinal {
+	max-height: 160px;
+	overflow: auto;
+	min-height: 132px;
+	overflow-x: hidden;
+	cursor: default;
+	display: block;
+}
+
+#selectedBadge:hover {
+	cursor: pointer;
+}
+
+#selectedBadgeFinal:hover {
+	cursor: pointer;
+}
+
+#showLabel {
+	width: 70%;
+	display: inline-block;
+	position: relative;
+}
+
+#alertMessage {
+	width: 100%;
+	display: none;
+	position: relative;
+	padding: 9px;
+	left: 44px;
+	font-size: 15pt;
+}
+
+.closeMark {
+	float: none !important;
+	opacity: 1.2;
+}
+
+#hiddenField {
+	width: 30%;
+	display: inline;
+	position: relative;
+}
+
+.btn-clipboard:hover {
+	color: #fff;
+	background-color: #027de7;
+}
+
+.btn-clipboard {
+	position: absolute;
+	top: .5rem;
+	right: .5rem;
+	z-index: 10;
+	display: block;
+	padding: .25rem .5rem;
+	font-size: 75%;
+	color: #818a91;
+	cursor: pointer;
+	background-color: transparent;
+	border-radius: .25rem;
+}
+
+.bd-clipboard {
+	position: relative;
+	display: block;
+	float: right;
+}
+
+.popover .popover-title {
+	font-weight: bold;
+}
+
+.bd-clipboard+.highlight {
+	margin-top: 0;
+}
+
+@media ( min-width : 576px) .highlight {
+	padding
+	
+	
+	:
+	
+	
+	1
+	.5rem
+	;
+	
+	
+	margin-right
+	
+	
+	:
+	
+	
+	0;
+	margin-left
+	
+	
+	:
+	
+	
+	0;
+}
+
+.highlight {
+	padding: 1rem;
+	margin: 1rem -15px;
+	background-color: #f7f7f9;
+	padding: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	background-color: transparent;
+	border: 0;
+}
+
+.dropbtn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 8px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content option {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content option:hover {
+	background-color: #f1f1
+}
+
+.dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+
+img {
+	padding: 5px;
+}
