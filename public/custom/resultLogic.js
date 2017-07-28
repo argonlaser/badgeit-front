@@ -1,4 +1,4 @@
-/* global io, Vue, $ */
+/* global io, Vue, $, _ */
 
 var vm = new Vue({
   el: '#dynamicData',
@@ -78,7 +78,7 @@ var vmSelected = new Vue({
         this.copyText += '[![' + this.selectedArrayUpdated[i].Name + ']'
         this.copyText += '(' + this.selectedArrayUpdated[i].ImageURL
         this.copyText += ')]()'
-        if (this.selectedStyle == 'flat-square' || this.selectedStyle == 'plastic')				{
+        if (this.selectedStyle === 'flat-square' || this.selectedStyle === 'plastic') {
           this.copyText += '?style=' + this.selectedStyle + ')]()'
         }
       }
@@ -116,7 +116,7 @@ function showMessage () {
     $('#alertMessage').alert('close')
   }, 2000)
   vmSelected.copyTextLen = vmSelected.selectedArrayUpdated.length
-	$('#showLabel').append('<div id="alertMessage" class="alert alert-success fade in">' +
+  $('#showLabel').append('<div id="alertMessage" class="alert alert-success fade in">' +
   '<a href="#" class="close closeMark" data-dismiss="alert">&times;</a> <strong>Success </strong>' +
   vmSelected.copyTextLen + ' - Badges are copied!.</div>')
 }
