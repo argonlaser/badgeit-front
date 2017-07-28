@@ -22,7 +22,7 @@
     "dev": "gulp dev",
     "code-style-fix": "standard --fix",
     "code-style": "standard",
-    "test": "standard && lab -l",
+    "test": "lab -l",
     "test-tap": "lab -a code -r tap -o tests.tap",
     "test-cov-html": "lab -a code -r html -o coverage.html"
   },
