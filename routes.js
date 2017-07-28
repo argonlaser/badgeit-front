@@ -39,10 +39,10 @@ module.exports = [
   },
   {
     method: 'GET',
-    path: '/{param*}',
+    path: '/public/{param*}',
     handler: {
       directory: {
-        path: '.',
+        path: './public',
         redirectToSlash: true,
         index: true
       }

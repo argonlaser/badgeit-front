@@ -22,13 +22,14 @@
     "dev": "gulp dev",
     "code-style-fix": "standard --fix",
     "code-style": "standard",
-    "test": "lab -l",
+    "test": "standard && lab -l",
     "test-tap": "lab -a code -r tap -o tests.tap",
     "test-cov-html": "lab -a code -r html -o coverage.html"
   },
   "standard": {
     "ignore": [
-      "/test/*"
+      "/test/*",
+      "/public/js/*"
     ]
   },
   "devDependencies": {
