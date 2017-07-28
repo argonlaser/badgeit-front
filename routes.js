@@ -22,18 +22,6 @@ module.exports = [
     path: '/',
     handler: require('./routeHandlers/home.js')
   },
-  // Serve static routes
-  {
-    method: 'GET',
-    path: '/{param*}',
-    handler: {
-      directory: {
-        path: '.',
-        redirectToSlash: true,
-        index: true
-      }
-    }
-  },
   {
     method: 'GET',
     path: '/favicon.ico',
@@ -48,5 +36,16 @@ module.exports = [
     method: 'GET',
     path: '/w/{repoName*}',
     handler: require('./routeHandlers/result.js')
+  },
+  {
+    method: 'GET',
+    path: '/{param*}',
+    handler: {
+      directory: {
+        path: '.',
+        redirectToSlash: true,
+        index: true
+      }
+    }
   }
 ]

@@ -5,12 +5,6 @@ module.exports = function (request, reply) {
   const remote = request.payload.remote
   const error = request.payload.error
 
-  if (error) {
-    logger.error('handleCallback', error)
-    reply('Error', error).code(404)
-    return
-  }
-
   logger.info('In handleCallback | ', 'Remote: ', remote)
 
   var nsp = global.io.of('/w/' + remote)
@@ -21,7 +15,7 @@ module.exports = function (request, reply) {
     // Send an event once socket is connected
     logger.info('Data emitted: | (New client id=' + socket.id + ').')
 
-    nsp.emit('news', { reqData: badges })
+    nsp.emit('news', { badges: badges, error: error })
     // Remove the socket on disconnection
     socket.on('disconnect', () => {
       logger.info('Client gone (id=' + socket.id + ').')
