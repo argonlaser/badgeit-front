@@ -75,12 +75,15 @@ var vmSelected = new Vue({
     copyTextLogic: function () {
       this.copyText = ''
       for (var i = 0; i < this.selectedArrayUpdated.length; i++) {
-        this.copyText += '[![' + this.selectedArrayUpdated[i].Name + ']'
+        this.copyText += '[!'
+        this.copyText += '[' + this.selectedArrayUpdated[i].Name + ']'
         this.copyText += '(' + this.selectedArrayUpdated[i].ImageURL
-        this.copyText += ')]()'
-        if (this.selectedStyle === 'flat-square' || this.selectedStyle === 'plastic') {
-          this.copyText += '?style=' + this.selectedStyle + ')]()'
+        // Add style parameters if chosen
+        if (this.selectedStyle.toLowerCase() === 'flat-square' || this.selectedStyle.toLowerCase() === 'plastic') {
+          this.copyText += '?style=' + this.selectedStyle.toLowerCase()
         }
+        this.copyText += ')]'
+        this.copyText += '(' + this.selectedArrayUpdated[i].LinkURL + ')'
       }
       copyToClipboard(this.copyText)
       showMessage()
