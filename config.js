@@ -9,8 +9,8 @@ module.exports =
     }
   },
   'production': {
-    'FRONT_URL': 'https://badgeit-front.now.sh',
-    'API_BASE_URL': 'http://34.211.102.93',
+    'FRONT_URL': process.env.FRONT_URL || 'https://badgeit-front.now.sh',
+    'API_BASE_URL': process.env.API_BASE_URL || 'http://34.211.102.93',
     'SERVER': {
       'port': 8080,
       'host': 'localhost'
