@@ -43,3 +43,6 @@ $ git push origin master:dev
 
 * Contact me via [Twitter](https://twitter.com/argon_laser)
 
+
+[![github watchers](https://img.shields.io/github/watchers/argonlaser/badgeit-front.svg)](https://github.com/argonlaser/badgeit-front)[![github license](https://img.shields.io/github/license/argonlaser/badgeit-front.svg)](https://github.com/argonlaser/badgeit-front)[![github contributors](https://img.shields.io/github/contributors/argonlaser/badgeit-front.svg)](https://github.com/argonlaser/badgeit-front)[![github open pr](https://img.shields.io/github/issues-pr/argonlaser/badgeit-front.svg)](https://github.com/argonlaser/badgeit-front)[![github all releases](https://img.shields.io/github/downloads/argonlaser/badgeit-front/total.svg)](https://github.com/argonlaser/badgeit-front)
+
