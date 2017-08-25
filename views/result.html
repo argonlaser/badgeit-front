@@ -100,7 +100,7 @@
 			<div class="panel-body panel-style" id="selectedBadgeFinal">
 
 				<img v-for="selectedObject in selectedArray"
-					:src='selectedObject.ImageURL' alt="image"
+					:src='selectedObject.ImageURL' alt=""
 					:id="selectedObject.eleId"
 					v-on:click="clickOnBadgeFromSelected(selectedObject,$event)" />
 
@@ -116,7 +116,7 @@
 				</div>
 				<div class="panel-body panel-style" id="selectedBadge">
 					<img v-for="groupObject in groupArrays" :src='groupObject.ImageURL'
-						alt="dynamicImage" :id="randomFun()"
+						alt="" :id="randomFun()"
 						v-on:click="clickOnBadgeFromSelector(groupObject,$event)" />
 				</div>
 			</div>
