@@ -23,11 +23,11 @@ body {
 
 #projectName {
 	display: inline-block;
-	font-color: white;
-	color: white;
 	font-size: 15pt;
-	font-style: italic;
-	font-family: fantasy;
+	color: #c242f4;
+    font-style: italic;
+    font-family: fantasy;
+    font-weight: bold;
 }
 
 .funkyFont {
@@ -82,14 +82,15 @@ body {
 	width: 70%;
 	display: inline-block;
 	position: relative;
+	color: lightcoral;
 }
 
 #alertMessage {
 	width: 100%;
 	display: none;
 	position: relative;
-	padding: 9px;
-	left: 44px;
+	padding: 7px;
+	left: 40px;
 	font-size: 15pt;
 }
 
@@ -138,31 +139,9 @@ body {
 }
 
 @media ( min-width : 576px) .highlight {
-	padding
-	
-	
-	:
-	
-	
-	1
-	.5rem
-	;
-	
-	
-	margin-right
-	
-	
-	:
-	
-	
-	0;
-	margin-left
-	
-	
-	:
-	
-	
-	0;
+	padding:1 rem;
+	margin-right:0;
+	margin-left:0;
 }
 
 .highlight {
@@ -220,4 +199,17 @@ body {
 
 img {
 	padding: 5px;
+}
+.panel-heading
+{
+ color: cornflowerblue !important;
+	
+}
+.style-background
+{
+	background-color:lightseagreen;
+}
+.home-color
+{
+	color:#FEFFFB !important;
 }
