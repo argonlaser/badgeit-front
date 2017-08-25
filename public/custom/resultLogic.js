@@ -32,21 +32,20 @@ var vm = new Vue({
         })
         // Push key for identification
         obj.eleId = targetToBackId
-        //Copy the object instead of getting reference
-        var copyObj=$.extend(true, {}, obj);
-        
-    	var localChagesForStyle = ''
-			var imageUrl = copyObj.ImageURL
-			var index = imageUrl.indexOf('?style=')
-			if (index > -1) {
-				imageUrl = imageUrl.substring(0, index)
-			}
-		localChagesForStyle = imageUrl
-		if (vmSelected.selectedStyle && (vmSelected.selectedStyle.toLowerCase() === 'flat-square' || vmSelected.selectedStyle.toLowerCase() === 'plastic'))
-		{
-			localChagesForStyle = imageUrl + '?style=' + vmSelected.selectedStyle.toLowerCase()
-		}
-		copyObj.ImageURL = localChagesForStyle
+        // Copy the object instead of getting reference
+        var copyObj = $.extend(true, {}, obj)
+
+        var localChagesForStyle = ''
+        var imageUrl = copyObj.ImageURL
+        var index = imageUrl.indexOf('?style=')
+        if (index > -1) {
+          imageUrl = imageUrl.substring(0, index)
+        }
+        localChagesForStyle = imageUrl
+        if (vmSelected.selectedStyle && (vmSelected.selectedStyle.toLowerCase() === 'flat-square' || vmSelected.selectedStyle.toLowerCase() === 'plastic')) {
+          localChagesForStyle = imageUrl + '?style=' + vmSelected.selectedStyle.toLowerCase()
+        }
+        copyObj.ImageURL = localChagesForStyle
         if (!available) {
         // Push to selected array
           vmSelected.selectedArray.push(copyObj)
@@ -64,7 +63,7 @@ var vm = new Vue({
   }
 })
 
-vm.homeURL=window.location.protocol+"://"+window.location.hostname;
+vm.homeURL = window.location.protocol + '://' + window.location.hostname
 /**
  * New Vue instance for selected operation
  */
@@ -119,22 +118,20 @@ var vmSelected = new Vue({
     copyTextLogic: function () {
       this.copyText = ''
       for (var i = 0; i < this.selectedArrayUpdated.length; i++) {
-    	  
-    	    var localChagesForStyle = ''
-  			var imageUrl = this.selectedArrayUpdated[i].ImageURL
-  			var index = imageUrl.indexOf('?style=')
-  			if (index > -1) {
-  				imageUrl = imageUrl.substring(0, index)
-  			}
-  		localChagesForStyle = imageUrl
-  	     // Add style parameters if chosen
-  		if (this.selectedStyle && (this.selectedStyle.toLowerCase() === 'flat-square' || this.selectedStyle.toLowerCase() === 'plastic'))
-  		{
-  			localChagesForStyle = imageUrl + '?style=' + this.selectedStyle.toLowerCase()
-  		}
+        var localChagesForStyle = ''
+        var imageUrl = this.selectedArrayUpdated[i].ImageURL
+        var index = imageUrl.indexOf('?style=')
+        if (index > -1) {
+          imageUrl = imageUrl.substring(0, index)
+        }
+        localChagesForStyle = imageUrl
+            // Add style parameters if chosen
+        if (this.selectedStyle && (this.selectedStyle.toLowerCase() === 'flat-square' || this.selectedStyle.toLowerCase() === 'plastic')) {
+          localChagesForStyle = imageUrl + '?style=' + this.selectedStyle.toLowerCase()
+        }
         this.copyText += '[!'
         this.copyText += '[' + this.selectedArrayUpdated[i].Name + ']'
-        this.copyText += '(' +localChagesForStyle
+        this.copyText += '(' + localChagesForStyle
         this.copyText += ')]'
         this.copyText += '(' + this.selectedArrayUpdated[i].LinkURL + ')'
       }
@@ -202,9 +199,8 @@ socket.on('news', function (data) {
   }
 })
 // Redirect to the base path
-var homeURL=window.location.protocol+"//"+window.location.hostname;
-function redirectMe()
-{
-  //Open in the same tab
-	window.open(homeURL,"_self");
+var homeURL = window.location.protocol + '//' + window.location.hostname
+function redirectMe () { // eslint-disable-line
+  // Open in the same tab
+  window.open(homeURL, '_self')
 }
