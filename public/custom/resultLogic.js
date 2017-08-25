@@ -32,15 +32,29 @@ var vm = new Vue({
         })
         // Push key for identification
         obj.eleId = targetToBackId
-
+        //Copy the object instead of getting reference
+        var copyObj=$.extend(true, {}, obj);
+        
+    	var localChagesForStyle = ''
+			var imageUrl = copyObj.ImageURL
+			var index = imageUrl.indexOf('?style=')
+			if (index > -1) {
+				imageUrl = imageUrl.substring(0, index)
+			}
+		localChagesForStyle = imageUrl
+		if (vmSelected.selectedStyle && (vmSelected.selectedStyle.toLowerCase() === 'flat-square' || vmSelected.selectedStyle.toLowerCase() === 'plastic'))
+		{
+			localChagesForStyle = imageUrl + '?style=' + vmSelected.selectedStyle.toLowerCase()
+		}
+		copyObj.ImageURL = localChagesForStyle
         if (!available) {
         // Push to selected array
-          vmSelected.selectedArray.push(obj)
+          vmSelected.selectedArray.push(copyObj)
         } else {
           $('#' + targetToBackId).css('display', 'inline')
         }
         // Copy for consistency
-        vmSelected.selectedArrayUpdated.push(obj)
+        vmSelected.selectedArrayUpdated.push(copyObj)
       }
     },
     randomFun: function () {
@@ -49,6 +63,8 @@ var vm = new Vue({
     }
   }
 })
+
+vm.homeURL=window.location.protocol+"://"+window.location.hostname;
 /**
  * New Vue instance for selected operation
  */
@@ -85,10 +101,10 @@ var vmSelected = new Vue({
       window.alert('style changed to ' + this.selectedStyle)
       // Show the reflection in UI
       // Add style parameters if chosen
-      for (var i = 0; i < this.selectedArrayUpdated.length; i++) {
+      for (var i = 0; i < this.selectedArray.length; i++) {
         var localChagesForStyle = ''
 
-        var imageUrl = this.selectedArrayUpdated[i].ImageURL
+        var imageUrl = this.selectedArray[i].ImageURL
         var index = imageUrl.indexOf('?style=')
         if (index > -1) {
           imageUrl = imageUrl.substring(0, index)
@@ -97,19 +113,28 @@ var vmSelected = new Vue({
         if (this.selectedStyle.toLowerCase() === 'flat-square' || this.selectedStyle.toLowerCase() === 'plastic') {
           localChagesForStyle = imageUrl + '?style=' + this.selectedStyle.toLowerCase()
         }
-        this.selectedArrayUpdated[i].ImageURL = localChagesForStyle
+        this.selectedArray[i].ImageURL = localChagesForStyle
       }
     },
     copyTextLogic: function () {
       this.copyText = ''
       for (var i = 0; i < this.selectedArrayUpdated.length; i++) {
+    	  
+    	    var localChagesForStyle = ''
+  			var imageUrl = this.selectedArrayUpdated[i].ImageURL
+  			var index = imageUrl.indexOf('?style=')
+  			if (index > -1) {
+  				imageUrl = imageUrl.substring(0, index)
+  			}
+  		localChagesForStyle = imageUrl
+  	     // Add style parameters if chosen
+  		if (this.selectedStyle && (this.selectedStyle.toLowerCase() === 'flat-square' || this.selectedStyle.toLowerCase() === 'plastic'))
+  		{
+  			localChagesForStyle = imageUrl + '?style=' + this.selectedStyle.toLowerCase()
+  		}
         this.copyText += '[!'
         this.copyText += '[' + this.selectedArrayUpdated[i].Name + ']'
-        this.copyText += '(' + this.selectedArrayUpdated[i].ImageURL
-        // Add style parameters if chosen
-        if (this.selectedStyle.toLowerCase() === 'flat-square' || this.selectedStyle.toLowerCase() === 'plastic') {
-          this.copyText += '?style=' + this.selectedStyle.toLowerCase()
-        }
+        this.copyText += '(' +localChagesForStyle
         this.copyText += ')]'
         this.copyText += '(' + this.selectedArrayUpdated[i].LinkURL + ')'
       }
