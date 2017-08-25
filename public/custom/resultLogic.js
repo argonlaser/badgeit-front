@@ -176,3 +176,10 @@ socket.on('news', function (data) {
     $('#contentDiv').css('display', 'block')
   }
 })
+// Redirect to the base path
+var homeURL=window.location.protocol+"//"+window.location.hostname;
+function redirectMe()
+{
+  //Open in the same tab
+	window.open(homeURL,"_self");
+}
