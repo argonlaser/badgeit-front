@@ -1,4 +1,4 @@
-![logo](https://raw.githubusercontent.com/scriptnull/badgeit-front/master/public/img/logo_100x100.png)
+![logo](https://raw.githubusercontent.com/argonlaser/badgeit-front/master/public/img/logo_100x100.png)
 
 # badgeit-front
 [![Build Status](https://semaphoreci.com/api/v1/argonlaser/badgeit-front/branches/master/badge.svg)](https://semaphoreci.com/argonlaser/badgeit-front)
