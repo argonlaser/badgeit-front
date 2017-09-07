@@ -1,6 +1,9 @@
-[![Build Status](https://semaphoreci.com/api/v1/argonlaser/badgeit-front/branches/master/badge.svg)](https://semaphoreci.com/argonlaser/badgeit-front)
+![logo](https://raw.githubusercontent.com/scriptnull/badgeit-front/master/public/img/logo_100x100.png)
+
 # badgeit-front
-Front service for badgeit
+[![Build Status](https://semaphoreci.com/api/v1/argonlaser/badgeit-front/branches/master/badge.svg)](https://semaphoreci.com/argonlaser/badgeit-front)
+
+Frontend of https://badgeit.today
 
 
 ## Running the tests
