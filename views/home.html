@@ -1,44 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8" />
-<title>Badgeit.today</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="width=device-width, initial-scale=1" name="viewport" />
-<meta content="badgit.today" name="description" />
-<meta content="vinoth" name="author" />
-<link href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700"
-	rel="stylesheet" type="text/css">
-<link href="/public/css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="/public/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="/public/css/gitIoHome.css" rel="stylesheet" type="text/css" />
-<link href="/public/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+	<meta charset="utf-8" />
+	<title>Badgeit.today</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<meta content="badgit.today" name="description" />
+	<meta content="vinoth" name="author" />
+	<link href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+	<link href="/public/css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="/public/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
-<div id="wrapper">
-	<div class="site-wrapper">
-		<div class="site-wrapper-inner">
-			<div class="container">
-				<br> <br> <br> <br> <br>
-				<form class="form-signin">
-					<div>
-						<div id="linkTitle" class="form-signin-heading">Enter Git
-							Repo Url</div>
-						<div id="gitLogo">
-							<img alt="logo" src="/public/img/gitLogo.png">
-						</div>
-					</div>
-					<label for="inputLink" class="sr-only">Repo Link</label>
-					<input type="text" id="inputLink" class="form-control" onkeypress="handleKeypress(event)"
-						placeholder="Repository Link" required autofocus><br>
-					<button class="btn btn-lg btn-success btn-block" type="button"
-						onclick="openResultsPage()">Enter</button>
-				</form>
-			</div>
-			<!-- /container -->
-		</div>
+	<div style="margin-left:50%; margin-top: 20px;">
+		<img alt="logo" src="/public/img/logo_100x100.png">
 	</div>
-</div>
+	<div style="margin-top:20px;">
+		<input type="text" id="inputLink" onkeypress="handleKeypress(event)" placeholder="https://github.com/scriptnull/compilex" required
+		 autofocus>
+		<button class="btn btn-lg btn-success btn-block" type="button" onclick="openResultsPage()">Enter</button>
+	</div>
 
 	<!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 	<!-- CORE PLUGINS -->
@@ -49,7 +32,7 @@
 	<script>
 		(function (i, s, o, g, r, a, m) {
 			i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-			(i[r].q = i[r].q || []).push(arguments)
+				(i[r].q = i[r].q || []).push(arguments)
 			}, i[r].l = 1 * new Date(); a = s.createElement(o),
 				m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
 		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga')
@@ -60,4 +43,5 @@
 	<!-- PAGE LEVEL SCRIPTS -->
 
 </body>
+
 </html>
